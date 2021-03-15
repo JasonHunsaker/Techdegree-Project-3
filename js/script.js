@@ -39,3 +39,18 @@ shirtDesign.addEventListener("change", (e) => {
 }});
 
 // skipping tshirt for now - will return later
+// register for activities operations
+
+let RegisterForActivities = document.querySelector('#activities');
+var activitiesCost = document.querySelector('#activities-cost');
+    activitiesCost.value = 0
+
+RegisterForActivities.addEventListener("change", (e) => {
+    let itemCost = parseInt(e.target.getAttribute('data-cost'))
+    if (e.target.checked) {
+        activitiesCost += itemCost;
+    } else if (e.target.unchecked) {
+        activitiesCost -= itemCost;
+    }
+    activitiesCost.innerHTML = `Total: $${activitiesCost}`
+})
