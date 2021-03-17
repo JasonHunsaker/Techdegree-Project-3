@@ -27,7 +27,7 @@ shirtDesign.addEventListener("change", (e) => {
     colorDiv.style.display = ' ';
 
     if (e.target.value === 'js puns') {
-        shirtColor.disabled = "false";
+        ;
         for (let i = 0; i < color.length; i++) {
             if (colorOptions[i].getAttribute('data-theme') === 'js puns') {
                 colorOptions[i].style.display = ' ';
@@ -38,19 +38,50 @@ shirtDesign.addEventListener("change", (e) => {
         
 }});
 
-// skipping tshirt for now - will return later
+// skipping tshirt for now - will return later.  color selections not enabiling
 // register for activities operations
 
 let RegisterForActivities = document.querySelector('#activities');
-var activitiesCost = document.querySelector('#activities-cost');
-    activitiesCost.value = 0
 
+var activitiesCost = document.querySelector('#activities-cost');
+    let totalCost = 0
+//adds values that are checked & totals them
 RegisterForActivities.addEventListener("change", (e) => {
     let itemCost = parseInt(e.target.getAttribute('data-cost'))
     if (e.target.checked) {
-        activitiesCost += itemCost;
-    } else if (e.target.unchecked) {
-        activitiesCost -= itemCost;
+        totalCost += itemCost;
+    } else {
+        totalCost -= itemCost;
     }
-    activitiesCost.innerHTML = `Total: $${activitiesCost}`
+    activitiesCost.innerHTML = `Total: $${totalCost}`
 })
+
+//Payment info/select credit card as payment method when page loads
+const paymentDropDown = document.querySelector("#payment")
+let creditCard = document.getElementById("credit-card");
+let paypal = document.getElementById("paypal");
+let bitcoin = document.getElementById("bitcoin");
+
+paypal.style.display = 'none'
+bitcoin.style.display = 'none'
+
+paymentDropDown[0].disabled = true
+
+paymentDropDown.addEventListener ('change', (e) => {
+    let paymentType = e.target.value;
+    if (paymentType === "paypal") {
+        creditCard.style.display = "none";
+        paypal.style.display = "block";
+        bitcoin.style.display = "none";
+    } else if (paymentType === "bitcoin"){
+        creditCard.style.display = "none";
+        bitcoin.style.display = "block";
+        paypal.style.display= "none";
+    } else {
+        creditCard.style.display = "block";
+        bitcoin.style.display = "none";
+        paypal.style.display= "none";
+    }
+})
+
+// onto form validation
