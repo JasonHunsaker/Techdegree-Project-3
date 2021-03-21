@@ -29,19 +29,17 @@ shirtDesign.addEventListener("change", (e) => {
     shirtColor.disabled = false;
     
     if (e.target.value === 'js puns') {
-        
         for (let i = 0; i < colorOptions.length; i++) {
                     if (colorOptions[i].getAttribute('data-theme') === 'js puns') {
-                    colorOptions[i].style.display = ' ';
+                    colorOptions[i].style.display = 'initial';
             } else {
                 colorOptions[i].style.display = 'none';
             }
         }
     } else if (e.target.value === 'heart js') {
-        
         for (let i = 0; i < colorOptions.length; i++) {
                     if (colorOptions[i].getAttribute('data-theme') === 'heart js') {
-                    colorOptions[i].style.display = ' ';
+                    colorOptions[i].style.display = 'initial';
             } else {
                 colorOptions[i].style.display = 'none';
             }
