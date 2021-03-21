@@ -22,23 +22,34 @@ let shirtColor = document.querySelector('#color');
 let colorDiv = document.getElementById("shirt-colors")
 let colorOptions = shirtColor.children;
 
-shirtColor.disabled = "true";
-shirtDesign.addEventListener("change", (e) => {
-    colorDiv.style.display = ' ';
+shirtColor.disabled = true;
 
+shirtDesign.addEventListener("change", (e) => {
+    
+    shirtColor.disabled = false;
+    
     if (e.target.value === 'js puns') {
-        ;
-        for (let i = 0; i < color.length; i++) {
-            if (colorOptions[i].getAttribute('data-theme') === 'js puns') {
-                colorOptions[i].style.display = ' ';
+        
+        for (let i = 0; i < colorOptions.length; i++) {
+                    if (colorOptions[i].getAttribute('data-theme') === 'js puns') {
+                    colorOptions[i].style.display = ' ';
             } else {
                 colorOptions[i].style.display = 'none';
             }
         }
+    } else if (e.target.value === 'heart js') {
         
-}});
+        for (let i = 0; i < colorOptions.length; i++) {
+                    if (colorOptions[i].getAttribute('data-theme') === 'heart js') {
+                    colorOptions[i].style.display = ' ';
+            } else {
+                colorOptions[i].style.display = 'none';
+            }
+        }
+    }
+});
 
-// skipping tshirt for now - will return later.  color selections not enabiling
+// skipping tshirt for now - will return later.  
 // register for activities operations
 
 let RegisterForActivities = document.querySelector('#activities');
@@ -85,3 +96,10 @@ paymentDropDown.addEventListener ('change', (e) => {
 })
 
 // onto form validation
+
+let emailAddress = document.getElementById("mail")
+let creditCardNumber = document.getElementById("cc-num")
+let zipCode = document.getElementById("zip")
+let cvv = document.getElementById("cvv")
+let form = document.querySelector("form")
+
