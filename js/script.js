@@ -47,7 +47,7 @@ shirtDesign.addEventListener("change", (e) => {
     }
 });
 
-// skipping tshirt for now - will return later.  
+ 
 // register for activities operations
 
 let RegisterForActivities = document.querySelector('#activities');
@@ -71,8 +71,9 @@ let creditCard = document.getElementById("credit-card");
 let paypal = document.getElementById("paypal");
 let bitcoin = document.getElementById("bitcoin");
 
-paypal.style.display = 'none'
-bitcoin.style.display = 'none'
+creditCard.style.display = 'none';
+paypal.style.display = 'none';
+bitcoin.style.display = 'none';
 
 paymentDropDown[0].disabled = true
 
@@ -95,9 +96,51 @@ paymentDropDown.addEventListener ('change', (e) => {
 
 // onto form validation
 
-let emailAddress = document.getElementById("mail")
-let creditCardNumber = document.getElementById("cc-num")
-let zipCode = document.getElementById("zip")
-let cvv = document.getElementById("cvv")
-let form = document.querySelector("form")
+let emailAddress = document.getElementById("mail");
+let creditCardNumber = document.getElementById("cc-num");
+let zipCode = document.getElementById("zip");
+let cvv = document.getElementById("cvv");
+let form = document.querySelector("form");
+let activitiesBox = document.getElementById("activities-box");
+
+//name varify
+function nameVerify(nameField) {
+    let nameFieldInput = nameField.value
+    let validName = /^.+$/.test(nameFieldInput);
+    return validName;
+};
+
+
+// regex from : https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+function CreditcardVerify(creditCardNumber){
+    let CreditcardInput = creditCardNumber.value;
+    let validCreditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/.test(CreditcardInput);
+    return validCreditCard;
+};
+
+//regex zip varify
+function zipVerify(zipCode){
+    let zipCodeInput = zipCode.value;
+    let validZip = /^[0-9]{5}/.test(zipCodeInput);
+    return validZip;
+};
+
+//regex cvv verify
+function cvvVerify(cvv){
+    let cvvInput = cvv.value;
+    let validCvv = /^[0-9]{3}/.test(cvvInput);
+    return validCvv;
+};
+
+/** */
+function emailIsValid (emailAddress){
+    userEmail = `jasonmhunsaker@SpeechGrammarList.com`;
+    let validEmail = /^[^@]+@[^@.]+\.[a-z]+$/i.test(userEmail);
+    return validEmail;
+  }
+
+  form.addEventListener('submit', (e) => {
+      e.preventDefault()
+  })
+
 
