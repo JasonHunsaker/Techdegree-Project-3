@@ -133,8 +133,8 @@ function cvvVerify(cvv){
 };
 
 /** */
-function emailIsValid (emailAddress){
-    userEmail = `jasonmhunsaker@SpeechGrammarList.com`;
+function emailVerify (emailAddress){
+    userEmail = emailAddress.value;
     let validEmail = /^[^@]+@[^@.]+\.[a-z]+$/i.test(userEmail);
     return validEmail;
   }
