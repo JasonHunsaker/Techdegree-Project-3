@@ -1,5 +1,5 @@
 // name field operations
-let nameField = document.getElementById("name");
+const nameField = document.getElementById("name");
 nameField.focus();
 
 //job role operations
@@ -96,51 +96,99 @@ paymentDropDown.addEventListener ('change', (e) => {
 
 // onto form validation
 
-let emailAddress = document.getElementById("mail");
-let creditCardNumber = document.getElementById("cc-num");
-let zipCode = document.getElementById("zip");
-let cvv = document.getElementById("cvv");
-let form = document.querySelector("form");
-let activitiesBox = document.getElementById("activities-box");
+const emailAddress = document.getElementById("mail");
+const creditCardNumber = document.getElementById("cc-num");
+const zipCode = document.getElementById("zip");
+const cvv = document.getElementById("cvv");
+const form = document.querySelector("form");
+const activitiesBox = document.getElementById("activities-box");
+let nameRegex = /^.+$/;
 
-//name varify
-function nameVerify(nameField) {
-    let nameFieldInput = nameField.value
-    let validName = /^.+$/.test(nameFieldInput);
-    return validName;
+//regex from : https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
+let ccRegex = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+;
+let zipRegex = /^[0-9]{5}/;
+let cvvRegex = /^[0-9]{3}/;
+//let emailInput = emailAddress.value;
+let emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i/
+
+//helper functions for validation
+function isValidName(name) {
+    let nameFieldInput = nameField.value;
+    return nameRegex.test(nameFieldInput);
 };
 
-
-// regex from : https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
-function CreditcardVerify(creditCardNumber){
-    let CreditcardInput = creditCardNumber.value;
-    let validCreditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/.test(CreditcardInput);
-    return validCreditCard;
+function isValidEmail(email) {
+    let emailAddressInput = emailAddress.value;
+    return emailRegex.test(emailAddressInput);
 };
 
-//regex zip varify
-function zipVerify(zipCode){
-    let zipCodeInput = zipCode.value;
-    let validZip = /^[0-9]{5}/.test(zipCodeInput);
-    return validZip;
+function isValidZip(zipcode) {
+    let zipInput = zipCode.value;
+    return zipRegex.test(zipInput);
 };
 
-//regex cvv verify
-function cvvVerify(cvv){
+function isValidCc(creditcardnumber) {
+    let ccInput = creditCardNumber.value;
+    return ccRegex.test(ccInput);
+};
+
+function isValidCvv(cvvnumber) {
     let cvvInput = cvv.value;
-    let validCvv = /^[0-9]{3}/.test(cvvInput);
-    return validCvv;
+    return cvvRegex.test(cvvInput);
 };
 
-/** */
-function emailVerify (emailAddress){
-    userEmail = emailAddress.value;
-    let validEmail = /^[^@]+@[^@.]+\.[a-z]+$/i.test(userEmail);
-    return validEmail;
-  }
+function validInput(validator) {
+    element.classList.add("valid");
+    element.classList.remove("not-valid");
+    element.lastElementChild.style.display = "none";
+};
 
-  form.addEventListener('submit', (e) => {
-      e.preventDefault()
-  })
+function invalidInput(validator) {
+    element.classList.add("not-valid");
+    element.classList.remove("valid");
+    element.lastElementChild.style.display = "block";
+}
 
+//refrences to all the "hints" in the HTML
+const nameHint = document.getElementById("name-hint");
+const emailHint = document.getElementById("email-hint");
+const zipHint = document.getElementById("zip-hint");
+const cvvHint = document.getElementById("cvv-hint");
+const ccHint = document.getElementById("cc-hint");
 
+form.addEventListener("submit", (e) => {
+    if (isValidName() === false) {
+        invalidInput(nameHint);
+        e.preventDefault();
+    } else {
+        validInput(nameHint);
+    }
+
+    if (isValidEmail() === false) {
+        invalidInput(emailHint);
+        e.preventDefault;
+    } else {
+        validInput(emailHint);
+    }
+    
+    if (isValidCc() === false) {
+        invalidInput(ccHint);
+        e.preventDefault();
+    } else {
+        validInput(ccHint);
+    }
+
+    if (isValidCvv() === false) {
+        invalidInput(cvvHint);
+        e.preventDefault;
+    } else {
+        validInput(cvvHint);
+    
+    }if (isValidZip() === false) {
+        invalidInput(zipHint);
+        e.preventDefault();
+    } else {
+        validInput(zipHint);
+    }
+})
