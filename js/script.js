@@ -1,5 +1,5 @@
 // name field operations
-const nameField = document.getElementById("name");
+const nameField = document.querySelector("#name");
 nameField.focus();
 
 //job role operations
@@ -99,19 +99,18 @@ paymentDropDown.addEventListener ('change', (e) => {
 
 // onto form validation
 
-const emailAddress = document.getElementById("mail");
+const emailAddress = document.querySelector("#email");
 const creditCardNumber = document.getElementById("cc-num");
 const zipCode = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
 const form = document.querySelector("form");
 const activitiesBox = document.getElementById("activities-box");
 let nameRegex = /^.+$/;
-
 let zipRegex = /^[0-9]{5}/;
 let cvvRegex = /^[0-9]{3}/;
 let emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i/
 
-//Funcion for successful validation
+//Function for successful validation
 
 function validInfo(element) {
     element.parentElement.classList.add("valid");
@@ -126,24 +125,23 @@ function invalidInfo(element) {
 };
 
 //functions for name & email validation
-function isValidName() {
+function isValidName(name) {
     const nameTest = nameRegex.test(nameField.value);
-        if (nameTest == false) {
-            console.log("invalid name")
-        } else {
-            console.log("valid name")
-        }
-    return nameTest;
-    
+    if (nameTest == true) {
+        validInfo(nameField);
+    } else {
+        invalidInfo(nameField);
+    }
+    return nameTest;    
 };
 
 function isValidEmail(email) {
     const emailTest = emailRegex.test(emailAddress.value);
-        if (emailTest == false){
-            console.log("invalid email")
-        } else {
-           console.log("valid email")
-        }
+    if (emailTest == true) {
+        validInfo(emailAddress);
+    } else {
+        invalidInfo(emailAddress);
+    }
     return emailTest;
 };
 
@@ -158,6 +156,13 @@ const cvvHint = document.getElementById("cvv-hint");
 const ccHint = document.getElementById("cc-hint");
 
 form.addEventListener('submit', (e) => {
-   e.preventDefault();
-
+    if (!nameTest()) {
+        e.preventDefault();
+        console.log("bad name")
+      }
+      if (!emailTest()) {
+        e.preventDefault();
+        console.log("bad email")
+      }
 });
+
