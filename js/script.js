@@ -139,7 +139,7 @@ function invalidInfo(element) {
 };
 
 //functions for name, email, and activity validation
-function isValidName(nameField.value) {
+function isValidName() {
     const nameTest = nameRegex.test(nameField.value);
     if (nameTest == true) {
         validInfo(nameField);
@@ -149,7 +149,7 @@ function isValidName(nameField.value) {
     return nameTest;    
 };
 
-function isValidEmail(email) {
+function isValidEmail() {
     const emailTest = emailRegex.test(emailAddress.value);
     if (emailTest == true) {
         validInfo(emailAddress);
@@ -159,7 +159,7 @@ function isValidEmail(email) {
     return emailTest;
 };
 
-function isValidActivity(activity) {
+function isValidActivity() {
     let validActivity = totalCost > 0
     if (validActivity) {
         validInfo(activitiesBox);
@@ -170,7 +170,7 @@ function isValidActivity(activity) {
 };
 
 // validation functions for credit card payment option
-function isValidCreditCard(CCnumber) {
+function isValidCreditCard() {
     const ccNumTest = ccNumRegex.test(creditCardNumber.value)
     if (ccNumTest == true) {
         validInfo(creditCardNumber);
@@ -180,7 +180,7 @@ function isValidCreditCard(CCnumber) {
     return ccNumTest;
 };
 
-function isValidZip(zipcode) {
+function isValidZip() {
     const zipTest = zipRegex.test(zipCode.value)
     if (zipTest == true) {
         validInfo(zipCode);
@@ -190,7 +190,7 @@ function isValidZip(zipcode) {
     return zipTest
 };
 
-function isValidCvv(cvv) {
+function isValidCvv() {
     const cvvTest = cvvRegex.test(cvvNumber.value)
     if (cvvTest == true) {
         validInfo(cvvNumber);
