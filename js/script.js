@@ -214,11 +214,11 @@ const ccHint = document.getElementById("cc-hint");
 form.addEventListener('submit', (e) => {
     if (!isValidName()) {
         e.preventDefault();
-      }
-      
+    }
+
     if (!isValidEmail()) {
         e.preventDefault();
-      }
+    }
 
     if (!isValidActivity()) {
         e.preventDefault();
