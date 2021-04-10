@@ -118,8 +118,8 @@ const activitiesBox = document.getElementById("activities-box");
 
 const nameRegex = /^.+$/;
 const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
-const zipRegex = /^[0-9]{5}/;
-const cvvRegex = /^[0-9]{3}/;
+const zipRegex = /^[0-9]{5}$/;
+const cvvRegex = /^[0-9]{3}$/;
 const ccNumRegex = /^[0-9]{13,16}$/;
 
 
