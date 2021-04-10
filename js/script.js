@@ -1,8 +1,8 @@
-// name field operations
+// name field operations 
 const nameField = document.querySelector("#name");
 nameField.focus();
 
-//job role operations
+//job role operations - input box should appear if "other" is selected
 let jobRole = document.getElementById("title");
 let otherJobRole = document.getElementById("other-job-role");
 
@@ -16,7 +16,7 @@ jobRole.addEventListener("change", (e) => {
     }
 });
 
-//tshirt operations
+//tshirt operations - selections in dropdown should change depending on theme selection
 let shirtDesign = document.querySelector('#design');
 let shirtColor = document.querySelector('#color');
 let colorDiv = document.getElementById("shirt-colors")
@@ -48,7 +48,7 @@ shirtDesign.addEventListener("change", (e) => {
 });
 
  
-// register for activities operations
+// register for activities operations - clicking checkboxes should generate a total for payment
 
 let RegisterForActivities = document.querySelector('#activities');
 var activitiesCost = document.querySelector('#activities-cost');
@@ -78,7 +78,7 @@ for (let i = 0; i < activitiesSelection.length; i += 1) {
     });
   };
 
-//Payment info/force user to select a payment option
+//Payment info - cc should be selected by default with the paypal & bitcoin options having elements appear on page if selected
 const paymentDropDown = document.querySelector("#payment")
 let creditCard = document.getElementById("credit-card");
 let paypal = document.getElementById("paypal");
@@ -107,7 +107,8 @@ paymentDropDown.addEventListener ('change', (e) => {
     }
 });
 
-// onto form validation
+// onto form validation - any error in the users : name, email, not registering for an activity; or if paying by creditcard, their ccnumber, zipcode or cvv not meeting requirements,
+// should prevent form from submitting
 
 const emailAddress = document.querySelector("#email");
 const creditCardNumber = document.getElementById("cc-num");
@@ -128,14 +129,16 @@ const ccNumRegex = /^[0-9]{13,16}$/;
 function validInfo(element) {
     element.parentElement.classList.add("valid");
     element.parentElement.classList.remove("not-valid");
+    element.parentElement.lastElementChild.style.display = "none";
 };
 
 function invalidInfo(element) {
     element.parentElement.classList.add("not-valid");
     element.parentElement.classList.remove("valid");
+    element.parentElement.lastElementChild.style.display = "block";
 };
 
-//functions for name & email validation
+//functions for name, email, and activity validation
 function isValidName(name) {
     
     const nameTest = nameRegex.test(nameField.value);
@@ -158,15 +161,12 @@ function isValidEmail(email) {
     return emailTest;
 };
 
-// activity validation function
 function isValidActivity(activity) {
     let validActivity = totalCost > 0
     if (validActivity) {
-    activitiesBox.classList.add("valid");
-    activitiesBox.classList.remove("not-valid");
-} else {
-    activitiesBox.classList.remove("valid");
-    activitiesBox.classList.add("not-valid");
+        validInfo(activitiesBox);
+    } else {
+        invalidInfo(activitiesBox);
     };
     return validActivity
 }
@@ -214,42 +214,26 @@ const ccHint = document.getElementById("cc-hint");
 form.addEventListener('submit', (e) => {
     if (!isValidName()) {
         e.preventDefault();
-        nameHint.style.display = "block"
-    } else {
-          nameHint.style.display = "none"
       }
+      
     if (!isValidEmail()) {
         e.preventDefault();
-        emailHint.style.display = "block";
-      } else {
-        emailHint.style.display = "none";
       }
+
     if (!isValidActivity()) {
         e.preventDefault();
-        activitiesHint.style.display = "block";
-    } else {
-        activitiesHint.style.display = "none";
     }
     if (paymentDropDown.value === 'credit-card') {
         if (!isValidCreditCard()) {
             e.preventDefault();
-            ccHint.style.display = "block";
-        } else {
-            ccHint.style.display = "none";
         }
 
         if (!isValidCvv()) {
             e.preventDefault();
-            cvvHint.style.display = "block";
-        } else {
-            cvvHint.style.display = "none";
         }
 
         if (!isValidZip()) {
             e.preventDefault();
-            zipHint.style.display = "block";
-        } else {
-            zipHint.style.display = "none";
         }
     }
 });
