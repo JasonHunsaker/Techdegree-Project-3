@@ -164,11 +164,9 @@ function isValidActivity(activity) {
     if (validActivity) {
     activitiesBox.classList.add("valid");
     activitiesBox.classList.remove("not-valid");
-    
 } else {
     activitiesBox.classList.remove("valid");
     activitiesBox.classList.add("not-valid");
-    
     };
     return validActivity
 }
@@ -181,6 +179,7 @@ function isValidCreditCard(CCnumber) {
     } else {
         invalidInfo(creditCardNumber);
     }
+    return ccNumTest;
 };
 
 function isValidZip(zipcode) {
@@ -190,6 +189,7 @@ function isValidZip(zipcode) {
     } else {
         invalidInfo(zipCode);
     }
+    return zipTest
 };
 
 function isValidCvv(cvv) {
@@ -199,6 +199,7 @@ function isValidCvv(cvv) {
     } else {
         invalidInfo(cvvNumber);
     }
+    return cvvTest
 };
 
 
