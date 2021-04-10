@@ -52,19 +52,19 @@ shirtDesign.addEventListener("change", (e) => {
 
 let RegisterForActivities = document.querySelector('#activities');
 var activitiesCost = document.querySelector('#activities-cost');
-let totalCost = 0
+let totalCost = 0;
 let activitiesSelection = document.querySelectorAll('input[type=checkbox]');
 
 //adds values that are checked & totals them
 RegisterForActivities.addEventListener("change", (e) => {
-    let itemCost = parseInt(e.target.getAttribute('data-cost'))
+    let itemCost = parseInt(e.target.getAttribute('data-cost'));
     if (e.target.checked) {
         totalCost += itemCost;
     } else {
         totalCost -= itemCost;
     }
     
-    activitiesCost.innerHTML = `Total: $${totalCost}`
+    activitiesCost.innerHTML = `Total: $${totalCost}`;
     return totalCost;
 });
 
@@ -79,7 +79,7 @@ for (let i = 0; i < activitiesSelection.length; i += 1) {
   };
 
 //Payment info - cc should be selected by default with the paypal & bitcoin options having elements appear on page if selected
-const paymentDropDown = document.querySelector("#payment")
+const paymentDropDown = document.querySelector("#payment");
 let creditCard = document.getElementById("credit-card");
 let paypal = document.getElementById("paypal");
 let bitcoin = document.getElementById("bitcoin");
@@ -139,7 +139,7 @@ function invalidInfo(element) {
 };
 
 //functions for name, email, and activity validation
-function isValidName(name) {
+function isValidName(nameField.value) {
     const nameTest = nameRegex.test(nameField.value);
     if (nameTest == true) {
         validInfo(nameField);
