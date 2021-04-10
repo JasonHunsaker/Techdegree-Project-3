@@ -66,7 +66,7 @@ RegisterForActivities.addEventListener("change", (e) => {
     
     activitiesCost.innerHTML = `Total: $${totalCost}`
     return totalCost;
-})
+});
 
 //add in focus indicators for checkboxes
 for (let i = 0; i < activitiesSelection.length; i += 1) {
@@ -140,7 +140,6 @@ function invalidInfo(element) {
 
 //functions for name, email, and activity validation
 function isValidName(name) {
-    
     const nameTest = nameRegex.test(nameField.value);
     if (nameTest == true) {
         validInfo(nameField);
@@ -151,7 +150,6 @@ function isValidName(name) {
 };
 
 function isValidEmail(email) {
-    
     const emailTest = emailRegex.test(emailAddress.value);
     if (emailTest == true) {
         validInfo(emailAddress);
@@ -168,8 +166,8 @@ function isValidActivity(activity) {
     } else {
         invalidInfo(activitiesBox);
     };
-    return validActivity
-}
+    return validActivity;
+};
 
 // validation functions for credit card payment option
 function isValidCreditCard(CCnumber) {
@@ -199,17 +197,11 @@ function isValidCvv(cvv) {
     } else {
         invalidInfo(cvvNumber);
     }
-    return cvvTest
+    return cvvTest;
 };
 
 
-//refrences to all the "hints" in the HTML
-const nameHint = document.getElementById("name-hint");
-const emailHint = document.getElementById("email-hint");
-const activitiesHint = document.getElementById("activities-hint");
-const zipHint = document.getElementById("zip-hint");
-const cvvHint = document.getElementById("cvv-hint");
-const ccHint = document.getElementById("cc-hint");
+
 
 form.addEventListener('submit', (e) => {
     if (!isValidName()) {
