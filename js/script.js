@@ -24,8 +24,11 @@ let colorOptions = shirtColor.children;
 
 shirtColor.disabled = true;
 
+//fixed issue with color selection using https://www.aspsnippets.com/Articles/Reset-Clear-DropDownList-selection-selected-value-using-JavaScript-and-jQuery.aspx as a reference
+
 shirtDesign.addEventListener("change", (e) => {
-    
+   
+    shirtColor.selectedIndex = 0
     shirtColor.disabled = false;
     
     if (e.target.value === 'js puns') {
@@ -46,6 +49,7 @@ shirtDesign.addEventListener("change", (e) => {
         }
     }
 });
+
 
  
 // register for activities operations - clicking checkboxes should generate a total for payment
