@@ -1,6 +1,6 @@
-// Project3.spec.js created with Cypress
-//
-// Start writing your Cypress tests below!
-// If you're unfamiliar with how Cypress works,
-// check out the link below and learn how to write your first test:
-// https://on.cypress.io/writing-first-test
+/// <reference types="cypress" />
+
+it('should navigate to google trends to get top searches', () => {
+    cy.visit('http://localhost:52330/index.html')
+    
+})
