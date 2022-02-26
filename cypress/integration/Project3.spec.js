@@ -42,7 +42,15 @@ describe('project3 actions', () => {
         cy.get('#zip').type('12345')
     })
 
-    it('should submit the application')
+    it('should submit the application', () => {
+    cy.get('button').click()
+    })
+
+    it('should check for failures', () => {
+        cy.get('#cc-hint')
+        cy.get('#zip-hint')
+        cy.get('#cvv-hint')
+    })
 })
 
 
