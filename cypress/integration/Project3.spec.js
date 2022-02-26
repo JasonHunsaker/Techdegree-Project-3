@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { getRndInteger } from "./Functions.spec"
+
 describe('project3 actions', () => {
     it('should visit the webapp', () => {
         cy.visit('http://localhost:52330/index.html')
@@ -29,12 +31,18 @@ describe('project3 actions', () => {
         cy.get('#activities-box > :nth-child(7)').click()
     })
 
-    
 
-    it('should make sure the total is correct', () => {
-     
 
+    it('should fill out the cc payment info', () => {
+        cy.get('#payment').select('Credit Card')
+        cy.get('#exp-month').select('08 - August')
+        cy.get('#exp-year').select('2025')
+        cy.get('#cc-num').type('123456879')
+        cy.get('#cvv').type('123')
+        cy.get('#zip').type('12345')
     })
+
+    it('should submit the application')
 })
 
 
